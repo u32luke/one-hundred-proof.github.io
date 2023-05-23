@@ -409,16 +409,19 @@ class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="dv">408</span>    }</span></code></pre></div>
 <p>It turns out that the swap backwards is actually split into two
 sub-swaps. The first sub-swap crosses the tick range boundary. Then the
-following happens: - just after crossing the boundary
-<code>currentTick</code> has the correct value
-(i.e. <code>nearestCurrentTick == currentTick</code>) because of line <a
-href="https://github.com/KyberNetwork/ks-elastic-sc-legacy/blob/362d9b6a726bcb286cc47c082c46f6259a5ae82d/contracts/Pool.sol#L409">Pool.sol:409</a>
-- but then the second sub-swap happens. It is so small that the price,
+following happens:</p>
+<ul>
+<li>just after crossing the boundary <code>currentTick</code> has the
+correct value (i.e. <code>nearestCurrentTick == currentTick</code>)
+because of line <a
+href="https://github.com/KyberNetwork/ks-elastic-sc-legacy/blob/362d9b6a726bcb286cc47c082c46f6259a5ae82d/contracts/Pool.sol#L409">Pool.sol:409</a></li>
+<li>but then the second sub-swap happens. It is so small that the price,
 <code>swapData.sqrtP</code>, does not change. When <a
 href="https://github.com/KyberNetwork/ks-elastic-sc-legacy/blob/362d9b6a726bcb286cc47c082c46f6259a5ae82d/contracts/Pool.sol#L407">Pool.sol:407</a>
 is executed this causes the <code>currentTick</code> to be incremented
 by one leading to <code>nearestCurrentTick == currentTick - 1</code>.
-The double-add exploit is now possible.</p>
+The double-add exploit is now possible.</li>
+</ul>
 <p>The fix for this is quite simple. The code above needs to be amended
 to:</p>
 <div class="sourceCode" id="cb3"><pre
