@@ -309,9 +309,9 @@ some <code>n</code>. Since the current price, <code>sqrtP</code>, is
 <p>However a bug manifests itself when you try to do a one-for-zero
 swap. Since <code>nearestCurrentTick == currentTick - 1</code> the next
 tick, <a
-href="https://github.com/KyberNetwork/ks-elastic-sc/blob/362d9b6a726bcb286cc47c082c46f6259a5ae82d/contracts/Pool.sol#L349">swapData.nextTick</a>
+href="https://github.com/KyberNetwork/ks-elastic-sc-legacy/blob/362d9b6a726bcb286cc47c082c46f6259a5ae82d/contracts/Pool.sol#L349">swapData.nextTick</a>
 will be <a
-href="https://github.com/KyberNetwork/ks-elastic-sc/blob/362d9b6a726bcb286cc47c082c46f6259a5ae82d/contracts/PoolTicksState.sol#L143-L146">calculated</a>
+href="https://github.com/KyberNetwork/ks-elastic-sc-legacy/blob/362d9b6a726bcb286cc47c082c46f6259a5ae82d/contracts/PoolTicksState.sol#L143-L146">calculated</a>
 as <code>currentTick</code>. This is not correct. It should be
 calculated as the next initialised tick range boundary to the right of
 <code>currentTick</code>.</p>
