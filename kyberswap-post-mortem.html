@@ -162,13 +162,13 @@ in narrow price bands. The tokens they provide as liquidity will only be
 used if the current price falls within this narrow price range. This has
 a couple of advantages:</p>
 <ul>
-<li>higher liquidity utilization leading to greater <a
+<li>Higher liquidity utilization leading to greater <a
 href="https://ethereum.stackexchange.com/questions/141785/why-concentrated-liquidity-is-capital-efficient">capital
 efficiency</a>. This translates to <em>smaller price impact</em> for
 traders.</li>
 <li>LPs can determine the extent of <a
 href="https://www.finder.com.au/impermanent-loss">impermanent loss</a>
-they are willing to bear</li>
+they are willing to bear.</li>
 </ul>
 <p>More can be learned about these concepts in the <a
 href="https://docs.kyberswap.com/liquidity-solutions/kyberswap-elastic/concepts/concentrated-liquidity">KyberSwap
@@ -198,7 +198,7 @@ CLMMs.</p>
 current price is not shown but let’s say it’s at tick <span
 class="math inline">250</span>.</p></li>
 <li><p>The diagram represents the depth of liquidity in various tick
-ranges. Three LPs have provided liquidity it different ranges: green in
+ranges. Three LPs have provided liquidity in different ranges: green in
 the range <span class="math inline">(30,700)</span>, purple in <span
 class="math inline">(100,800)</span> and red in <span
 class="math inline">(300,600)</span>.</p></li>
@@ -246,8 +246,7 @@ respect</p>
 should start at zero and increase/decrease on the leading/trailing edges
 of tick ranges.</li>
 <li>The liquidity should never go below zero</li>
-<li>when swapping tick range boundaries should never be crossed without
-liquidity being increased or decreased.</li>
+<li>when swapping, tick range boundaries should never be crossed without an increase or decrease in liquidity.</li>
 </ul></li>
 </ul>
 <h2 id="an-outline-of-the-hack">An outline of the hack</h2>
@@ -270,7 +269,7 @@ href="https://github.com/KyberNetwork/ks-elastic-sc-legacy/blob/362d9b6a726bcb28
 The current liquidity of the pool, given the current price.</li>
 <li><a
 href="https://github.com/KyberNetwork/ks-elastic-sc-legacy/blob/362d9b6a726bcb286cc47c082c46f6259a5ae82d/contracts/PoolStorage.sol#L23">currentTick</a>.
-The closest tick to left of the current price. Importantly,
+The closest tick to the left of the current price. Importantly,
 <code>currentTick</code> might not sit on a valid tick range boundary
 (given various values of the tick spacing
 <code>tickDistance</code>).</li>
@@ -282,7 +281,7 @@ The closest <em>tick range boundary</em> to the left
 </ul>
 <h3 id="the-curious-double-life-of-sqrtp-on-tick-range-boundaries">The
 curious double-life of <code>sqrtP</code> on tick range boundaries</h3>
-<p>Given a price one can calculate the nearest tick that corresponds to
+<p>Given a price, one can calculate the nearest tick that corresponds to
 it using <a
 href="https://github.com/KyberNetwork/ks-elastic-sc-legacy/blob/362d9b6a726bcb286cc47c082c46f6259a5ae82d/contracts/libraries/TickMath.sol#L69">TickMath.getTickAtSqrtRatio</a>.</p>
 <p>In general the following system-wide invariant holds:</p>
